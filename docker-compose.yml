@@ -1,0 +1,18 @@
+version: "3.8"
+services:
+  app:
+    container_name: app
+    image: nodetest_app
+    restart: always
+    build: .
+    ports:
+      - "3000:8080"
+    links:
+      - mongo
+  mongo:
+    container_name: mongo
+    image: mongo
+    volumes:
+      - /home/user/playground/nodeTest/mongodb/database:/data/db
+    ports:
+      - "27018:27017"
